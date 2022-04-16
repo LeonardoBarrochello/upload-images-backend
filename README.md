@@ -8,7 +8,7 @@ Esta é uma aplicação backend de upload de imagens.
     - Conta na AWS com Bucket e Usuario criados.
 
 
-  - Como Rodar Aplicação
+  - ## Como Rodar Aplicação
     - Clonar aplicação na sua máquina.
     - Rodar ''yarn'' ou ''npm i'' no diretorio do projeto.
     - Rodar ''docker-compose up'' e depois ''docker-compose start'' ou ''docker start database_images'' para rodar o banco de dados localmente
