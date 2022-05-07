@@ -1,6 +1,6 @@
 import "dotenv/config";
-import config from "../../../configs/config.js"
-import app from "./app.js"
+import config from "../../../configs/config"
+import app from "./app"
 
 
 

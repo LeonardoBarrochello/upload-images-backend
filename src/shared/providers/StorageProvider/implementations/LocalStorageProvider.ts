@@ -1,12 +1,12 @@
 import {resolve} from "path";
 import fs from "fs"
-import config from "../../../configs/config.js";
-import upload from "../../../configs/upload.js";
+import upload from "../../../../configs/upload";
+import { IStorageProvider } from "../IStorageProvider";
 
 
-export class LocalStorageProvider {
+export class LocalStorageProvider implements IStorageProvider{
     
-    async save(file , folder){
+    async save(file : string , folder : string) : Promise<string>{
         const {uploadDir} = upload;
 
         await fs.promises.rename(
@@ -16,7 +16,7 @@ export class LocalStorageProvider {
         return file;
 
     }
-    async delete(file , folder){
+    async delete(file : string , folder : string) : Promise<void | Error> {
         const fileName = resolve(`${upload.uploadDir}/${folder}`, file);
         
         try {
@@ -30,5 +30,18 @@ export class LocalStorageProvider {
             if (err) throw err;
             console.log(`${fileName} was deleted`);
         });
+    }
+
+    async getObject(file : string ,folder : string) : Promise<fs.Stats | Error >{
+        const fullPath = resolve(`${upload.uploadDir}/${folder}`,file);
+
+        try {
+            const fileInfo = await fs.promises.stat(fullPath);
+            return fileInfo;
+
+        } catch {
+             throw new Error(`cannot access file path : ${fullPath}`);
+        }
+
     }
 }

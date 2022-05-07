@@ -1,22 +1,25 @@
-import { AppError } from '../shared/errors/AppError.js';
-import bcryptPkg from 'bcryptjs';
-import jwtPkg from 'jsonwebtoken';
-import auth from '../configs/auth.js';
-import {DependencyInjection}  from '../shared/containers/index.js';
+import { AppError } from '../shared/errors/AppError';
+import { hash , compare } from 'bcryptjs';
+import sign from 'jsonwebtoken';
+import auth from '../configs/auth';
+import { injectable , inject } from "tsyringe";
+import { IUsersRepository } from '../repositories/IUsersRepository';
 
-const { hash , compare } = bcryptPkg;
-const {sign} = jwtPkg
 
+
+
+@injectable()
 export class UserService {
-
-    userRepository;
-    constructor(){
-        this.userRepository = new DependencyInjection().getDependency("UsersRepository");
+ 
+    constructor(
+        @inject("UsersRepository")
+        private usersRepository : IUsersRepository
+    ){
     }
     async create(name,email,password){
         
         
-         const user = await this.userRepository.findByEmail(email)
+         const user = await this.usersRepository.findByEmail(email)
 
          if(user){
              throw new AppError("User already exists" , 400)
@@ -24,7 +27,7 @@ export class UserService {
 
          const passwordHash = await hash(password,8)
 
-         await this.userRepository.create(name,email,passwordHash)
+         await this.usersRepository.create(name,email,passwordHash)
 
          return;
     }
@@ -36,7 +39,7 @@ export class UserService {
             secret_token,
         } = auth
 
-        const user = await this.userRepository.findByEmail(email)
+        const user = await this.usersRepository.findByEmail(email)
 
         if(!user){
             throw new AppError("email or password incorrect!")

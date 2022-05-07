@@ -1,10 +1,10 @@
-import { AppError } from "../../../errors/AppError.js";
-import auth from "../../../../configs/auth.js";
-import pkg from 'jsonwebtoken';
+import { AppError } from "../../../errors/AppError";
+import auth from "../../../../configs/auth";
+import {verify} from 'jsonwebtoken';
+import { NextFunction, Request, Response } from "express";
 
-const {verify} = pkg;
 
-export async function ensureAuthenticated (request,response ,next) {
+export async function ensureAuthenticated (request : Request , response : Response , next : NextFunction) {
      const authHeader = request.headers.authorization ;
 
      if(!authHeader){

@@ -1,14 +1,14 @@
-import pkg from 'aws-sdk';
+import {S3} from 'aws-sdk';
 import {resolve} from "path"
 import fs from "fs"
-import upload from '../../../configs/upload.js';
+import upload from '../../../../configs/upload';
 import mime from "mime"
+import {IStorageProvider } from "../IStorageProvider"
 
-const {S3} = pkg;
 
-export class S3StorageProvider {
+export class S3StorageProvider implements IStorageProvider {
 
-    client;
+    private client : S3 ;
     constructor(){
         this.client = new S3({
             region : process.env.AWS_BUCKET_REGION

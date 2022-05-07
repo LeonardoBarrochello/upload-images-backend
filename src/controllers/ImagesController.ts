@@ -1,15 +1,18 @@
-import { ImageService } from "../services/ImageService.js";
+import { ImageService } from "../services/ImageService";
+import { container } from "tsyringe";
+import {Request, Response } from "express";
 
 export class ImagesController {
 
+    private imageService : ImageService
 
     constructor(){
-         this.imageService = new ImageService()
+        this.imageService = container.resolve(ImageService)
     }
 
-    async save(request,response){
+    async save(request : Request , response : Response ) : Promise<Response>{
     
-        const { filename , size } = request.file ;
+        const { filename , size } = request.file;
 
         const { user_id } = request.user;
 
@@ -19,7 +22,7 @@ export class ImagesController {
 
     }
 
-    async delete(request,response){
+    async delete(request : Request , response : Response ) : Promise<Response> {
         
         const { id } = request.params;
 
@@ -28,7 +31,7 @@ export class ImagesController {
         return response.status(201)
     }
 
-    async findByUserId(request,response){
+    async findByUserId(request : Request , response : Response ) : Promise<Response>{
 
         const { user_id } = request.user;
 
