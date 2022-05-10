@@ -25,23 +25,4 @@ Esta é uma aplicação backend de upload de imagens.
     - Recuperar registros das imagens que foram cadastradas e suas respectivas Urls
     - Deleção de imagens tanto localmente quanto da AWS.
 
-
-  - ## Documentação Rotas
-  
-      - ## Post
-     
-        - /user 
-          - Body exemplo : { name : "example" , email : "example" , password : "example" } ,
-          - Resposta : 
-            - status : 200
-        - /user/token/session
-          - Body exemplo : { email : "example" , password : "example" }
-          - Resposta :
-            - status: 200 , 
-            - body :  { user : { name : "example" , email : "example"  }  , access_token : "token" } 
-         
-      - ## Get
-        - /user/images
-        
-        - ### Em processo de Documentação :) ###
         
