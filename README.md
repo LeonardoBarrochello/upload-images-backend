@@ -9,6 +9,7 @@ Esta é uma aplicação backend de upload de imagens.
 
 
   - ## Configurações
+    - No arquivo dockercompose.yml deve-se configurar o nome e senha do seu banco de dados 
     - No arquivo .env deve ser preenchido todas as variaveis com as credenciais da sua conta da AWS e Bucket , incluindo também a connection string do seu banco de dados
 
   - ## Como Rodar Aplicação
