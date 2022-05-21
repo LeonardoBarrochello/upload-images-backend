@@ -9,7 +9,7 @@ Esta é uma aplicação backend de upload de imagens.
 
 
   - ## Configurações
-    - No arquivo dockercompose.yml deve-se configurar o nome e senha do seu banco de dados 
+    - No arquivo dockercompose.yml deve-se configurar as variaveis de usuario , nome do banco e senha de acordo com sua escolha   POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB)
     - No arquivo .env deve ser preenchido todas as variaveis com as credenciais da sua conta da AWS e Bucket , incluindo também a connection string do seu banco de dados
 
   - ## Como Rodar Aplicação
